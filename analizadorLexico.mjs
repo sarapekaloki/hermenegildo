@@ -72,12 +72,10 @@ function analizadorLexico(estado, cadena, apuntadorInicial, apuntadorBusqueda){
 
 let codigo = 
 `
-#este es un comentario en una línea#
-#este es un comentario en
-dos lineas#
-
-#este es un comentario erroneo
+0.hola
 `
+
+
 codigo = codigo.replaceAll("\t","")
 console.log("TOKENS")
 analizadorLexico(0, codigo, 0,0)
@@ -96,8 +94,8 @@ function isValidIDChar(char){
         return true 
     } else if (char.match(/[a-zA-Z]/)){
         return true
-    return false
     }
+    return false
 }
 
 function isNumber(char) {
@@ -110,7 +108,7 @@ function singleOperator(char){
     const validOptions = {
         "+":"OP_SUMA",
         "-":"OP_RESTA",
-        "/":"OP_MULTIPLICACIÓN",
+        "/":"OP_DIVISIÓN",
         "%":"OP_MODULO",
         "[":"CORCHETE_ABRIR",
         "]":"CORCHETE_CERRAR",

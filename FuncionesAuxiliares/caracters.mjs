@@ -16,7 +16,7 @@ function caracteres(estado, cadena, apuntadorInicial, apuntadorBusqueda){
                 estado = 11;
                 apuntadorBusqueda = apuntadorBusqueda+1;
             } else{
-                console.log("ERROR: EL TIPO DE DATO \'CARACTER\' NO PUEDE TENER MÁS DE DOS CARACTERES");
+                console.log("ERROR: EL TIPO DE DATO \'CARACTER\' NO PUEDE TENER MÁS DE DOS CARACTERES O NO TIENE \' DE CIERRE");
                 res = {
                     estado: 0,
                     apuntadorInicial: apuntadorInicial,

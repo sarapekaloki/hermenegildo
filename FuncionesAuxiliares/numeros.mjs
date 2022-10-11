@@ -29,7 +29,7 @@ function numeros(estado, cadena, apuntadorInicial, apuntadorBusqueda){
                 res = {
                     estado: 0,
                     apuntadorInicial: apuntadorInicial,
-                    apuntadorBusqueda: apuntadorBusqueda+1
+                    apuntadorBusqueda: apuntadorBusqueda-1
                 }
                 break
             }
