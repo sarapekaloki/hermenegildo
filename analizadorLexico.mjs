@@ -72,7 +72,18 @@ function analizadorLexico(estado, cadena, apuntadorInicial, apuntadorBusqueda){
 
 let codigo = 
 `
-0.hola
+lista@ = ["listaEpica"];
+num = 0.
+text = "";
+equipo = "chivas";
+switch(equipo) {
+  case "xolos":
+    text = "Los xolos son malos";
+    break;
+  case "pachuca":
+    text = "Equipo bueno";
+    break;
+}
 `
 
 
