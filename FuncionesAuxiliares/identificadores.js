@@ -1,4 +1,3 @@
-export default identificadores
 
 const palabrasReservadas = {
     None: "NULO",
@@ -22,7 +21,7 @@ const palabrasReservadas = {
 
 }
 
-function identificadores(estado, cadena, apuntadorInicial, apuntadorBusqueda){
+export function identificadores(estado, cadena, apuntadorInicial, apuntadorBusqueda){
     let res = {}
     while(true){
         if (estado == 3){

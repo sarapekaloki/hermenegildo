@@ -1,6 +1,5 @@
-export default oprel
 
-function oprel(estado, cadena, apuntadorInicial, apuntadorBusqueda){
+export function oprel(estado, cadena, apuntadorInicial, apuntadorBusqueda){
     let token = {};
     while(true){
         if(estado == 14){

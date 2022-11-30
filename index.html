@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Hermenegildo</title>
+</head>
+<body>
+    <div class="header">
+        <img src="./logo.png" class = "logo">
+        <h1 class= "title"> Hermenegildo.py </h1>
+    </div>
+    <div class = "container">
+        <div class="editor">
+            <div class="editor-header">
+                <h3 class="editor-header-text"> code</h3>
+                <button id='run' class="run-button">Run</button>
+            </div>
+            <div class="margen">
+                <textarea id="code" class="editor-textarea"></textarea>
+            </div>
+        </div>
+    
+        <div class="consola">
+            <div class="editor-header">
+                <h3 class="editor-header-text"> result</h3>
+                <button id="clear" class="clear-button">Clear</button>
+            </div>
+            <div class="margen">
+                <p id="result" class="editor-textarea"></p>       
+            </div>
+        </div>
+    
+    <script src="./index.js" type="module"></script> 
+
+</body>
+</html>

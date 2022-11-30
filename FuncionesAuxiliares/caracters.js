@@ -1,7 +1,7 @@
-export default caracteres;
 
-function caracteres(estado, cadena, apuntadorInicial, apuntadorBusqueda){
+export function caracteres(estado, cadena, apuntadorInicial, apuntadorBusqueda){
    let res = {}
+   let token = {}
     while(true){
         if(estado == 9){
             if(cadena.charAt(apuntadorBusqueda)!= '\''){
@@ -16,17 +16,18 @@ function caracteres(estado, cadena, apuntadorInicial, apuntadorBusqueda){
                 estado = 11;
                 apuntadorBusqueda = apuntadorBusqueda+1;
             } else{
-                console.log("ERROR: EL TIPO DE DATO \'CARACTER\' NO PUEDE TENER MÁS DE 1 CARACTER O NO TIENE \' DE CIERRE");
+                token = {error: "ERROR LÉXICO: EL TIPO DE DATO \'CARACTER\' NO PUEDE TENER MÁS DE 1 CARACTER O NO TIENE \' DE CIERRE" }
                 res = {
                     estado: 0,
                     apuntadorInicial: apuntadorInicial,
-                    apuntadorBusqueda: apuntadorBusqueda+1
+                    apuntadorBusqueda: apuntadorBusqueda,
+                    token: token
                 }
                 break
             }
 
         } else if(estado == 11){
-            const token = {type: "CARACTER", value: cadena.slice(apuntadorInicial, apuntadorBusqueda)};
+            token = {type: "CARACTER", value: cadena.slice(apuntadorInicial, apuntadorBusqueda)};
             res = {
                 estado: 0,
                 apuntadorInicial: apuntadorInicial,

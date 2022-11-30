@@ -1,13 +1,15 @@
-import comentarios from './FuncionesAuxiliares/comentarios.mjs'
-import identificadores from './FuncionesAuxiliares/identificadores.mjs'
-import numeros from './FuncionesAuxiliares/numeros.mjs';
-import cadenas from './FuncionesAuxiliares/cadenas.mjs';
-import caracteres from './FuncionesAuxiliares/caracters.mjs';
-import opmath from './FuncionesAuxiliares/opmath.mjs';
-import oprel from './FuncionesAuxiliares/oprel.mjs';
 
-const tokens = []
-function analizadorLexico(estado, cadena, apuntadorInicial, apuntadorBusqueda){
+import {comentarios} from './FuncionesAuxiliares/comentarios.js'
+import {identificadores} from './FuncionesAuxiliares/identificadores.js'
+import {numeros} from './FuncionesAuxiliares/numeros.js';
+import {cadenas} from './FuncionesAuxiliares/cadenas.js';
+import {caracteres} from './FuncionesAuxiliares/caracters.js';
+import {opmath} from './FuncionesAuxiliares/opmath.js';
+import {oprel} from './FuncionesAuxiliares/oprel.js';
+var tokensOG;
+export function analizadorLexico(estado, cadena, apuntadorInicial, apuntadorBusqueda, tokens){
+    tokensOG = tokens
+
     if(estado == 0) {
         if(cadena.charAt(apuntadorInicial) == "#"){
             estado = 1;
@@ -58,7 +60,7 @@ function analizadorLexico(estado, cadena, apuntadorInicial, apuntadorBusqueda){
         }
         else if (cadena.charAt(apuntadorInicial) == " " || cadena.charAt(apuntadorInicial) == "\n" || cadena.charAt(apuntadorInicial) == ""){
             if(apuntadorBusqueda < cadena.length-1){
-                analizadorLexico(estado, cadena, apuntadorInicial+1, apuntadorBusqueda+1)
+                analizadorLexico(estado, cadena, apuntadorInicial+1, apuntadorBusqueda+1, tokensOG)
             }
         } 
         else {
@@ -66,38 +68,28 @@ function analizadorLexico(estado, cadena, apuntadorInicial, apuntadorBusqueda){
             res.apuntadorInicial = res.apuntadorBusqueda = apuntadorInicial;
             reRun(res, cadena);
         }
-    }    
+    }
+    return tokens    
 }
 
 
-let codigo = 
-`
-lista@ = ["listaEpica"];
-num = 0.
-text = "";
-equipo = "chivas";
-switch(equipo) {
-  case "xolos":
-    text = "Los xolos son malos";
-    break;
-  case "pachuca":
-    text = "Equipo bueno";
-    break;
-}
-`
+// let codigo = 
+// `
+// lista = ["hola", True]
+// `
 
 
-codigo = codigo.replaceAll("\t","")
-console.log("TOKENS")
-analizadorLexico(0, codigo, 0,0)
+// codigo = codigo.replaceAll("\t","")
+// console.log("TOKENS")
+// analizadorLexico(0, codigo, 0,0)
 
 
 function reRun(res, cadena){
     if(Object.keys(res).length > 3) {
-        console.log(res.token)
-    }
+        tokensOG.push(res.token);
+    } 
     if( res.apuntadorBusqueda < cadena.length-1){
-        analizadorLexico(res.estado, cadena, res.apuntadorBusqueda+1, res.apuntadorBusqueda+1)
+        analizadorLexico(res.estado, cadena, res.apuntadorBusqueda+1, res.apuntadorBusqueda+1, tokensOG)
     }
 }
 function isValidIDChar(char){
@@ -116,6 +108,7 @@ function isNumber(char) {
 
 function singleOperator(char){
     let res = {};
+    let token = {};
     const validOptions = {
         "+":"OP_SUMA",
         "-":"OP_RESTA",
@@ -133,7 +126,7 @@ function singleOperator(char){
     };
     const type = Object.keys(validOptions).includes(char) ? validOptions[char] : 0;
     if(type){
-        const token = {type: type, value: char};
+        token = {type: type, value: char};
         res = {
             estado: 0,
             apuntadorInicial: 0,
@@ -141,11 +134,12 @@ function singleOperator(char){
             token: token
         }
     } else {
-        console.log("ERROR: CARACTER INVÁLIDO", char)
+        token = {error: "ERROR: CARACTER INVÁLIDO " + char}
         res = {
             estado: 0,
             apuntadorInicial: 0,
             apuntadorBusqueda: 0,
+            token: token
         }
     }
     return res               

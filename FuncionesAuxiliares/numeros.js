@@ -1,7 +1,7 @@
-export default numeros
 
-function numeros(estado, cadena, apuntadorInicial, apuntadorBusqueda){
+export function numeros(estado, cadena, apuntadorInicial, apuntadorBusqueda){
    let res = {}
+   let token = {}
     while(true){ 
         if (estado == 4){
             if(isNumber(cadena.charAt(apuntadorBusqueda))){
@@ -10,7 +10,7 @@ function numeros(estado, cadena, apuntadorInicial, apuntadorBusqueda){
                 estado = 5;
                 apuntadorBusqueda = apuntadorBusqueda+1;
             } else {
-                const token = {type: "ENTERO", value: cadena.slice(apuntadorInicial, apuntadorBusqueda)};
+                token = {type: "ENTERO", value: cadena.slice(apuntadorInicial, apuntadorBusqueda)};
                 res = {
                     estado: 0,
                     apuntadorInicial: apuntadorInicial,
@@ -25,11 +25,12 @@ function numeros(estado, cadena, apuntadorInicial, apuntadorBusqueda){
 
                 apuntadorBusqueda = apuntadorBusqueda+1;
             } else {
-                console.log("ERROR: NO HAY UN NÚMERO DESPUÉS DEL PUNTO FLOTANTE -> ", cadena.slice(apuntadorInicial, apuntadorBusqueda))
+                token = {error: "ERROR: NO HAY UN NÚMERO DESPUÉS DEL PUNTO FLOTANTE -> " + cadena.slice(apuntadorInicial, apuntadorBusqueda)}
                 res = {
                     estado: 0,
                     apuntadorInicial: apuntadorInicial,
-                    apuntadorBusqueda: apuntadorBusqueda-1
+                    apuntadorBusqueda: apuntadorBusqueda-1,
+                    token: token
                 }
                 break
             }
@@ -38,8 +39,7 @@ function numeros(estado, cadena, apuntadorInicial, apuntadorBusqueda){
             if(isNumber(cadena.charAt(apuntadorBusqueda))){
                 apuntadorBusqueda = apuntadorBusqueda+1;
             } else{
-
-                const token = {type: "DECIMAL", value: cadena.slice(apuntadorInicial, apuntadorBusqueda)};
+                token = {type: "DECIMAL", value: cadena.slice(apuntadorInicial, apuntadorBusqueda)};
                 res = {
                     estado: 0,
                     apuntadorInicial: apuntadorInicial,

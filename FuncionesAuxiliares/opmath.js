@@ -1,6 +1,5 @@
-export default opmath
 
-function opmath(estado, cadena, apuntadorInicial, apuntadorBusqueda){
+export function opmath(estado, cadena, apuntadorInicial, apuntadorBusqueda){
     let res = {}
     while(true){
         if(estado == 12){
