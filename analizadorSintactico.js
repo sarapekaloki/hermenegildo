@@ -220,8 +220,6 @@ export function validarCadena(tabla,pila,entrada){
             producciones.push(["BR"])
         }
         catch (e){
-            producciones.push(["Entrada_antes",entrada])
-            producciones.push(["Pila_antes",pila.slice()])
             producciones.push([0])
             return producciones
         }
