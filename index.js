@@ -1,5 +1,5 @@
 import {analizadorLexico} from "./analizadorLexico.js";
-import {tabla, validarCadena,validarCadena2} from "./analizadorSintactico.js";
+import {tabla, validarCadena} from "./analizadorSintactico.js";
 
 var code = document.getElementById('code');
 var result = document.getElementById('result');
@@ -35,10 +35,19 @@ function run(){
         let pila = ["$", "S0"];
         let syntax = validarCadena(tabla,pila,entrada)
         syntax.forEach(production =>{
-            if(production.length > 1){
-                console.log(production,"1")
-                resultado += production[0].fontcolor("cyan")+":".fontcolor("cyan") + production[1]+"<br/>";
-                console.log(production,"2")
+            if(production.length === 3){
+                resultado += production[0].fontcolor("#ff66a8")+": ".fontcolor("#ff66a8")+production[1]+" &#8594 ".fontcolor("#ff66a8")+ production[2]+"<br>";
+            }
+            else if(production.length === 2){
+                if(production[0] === "Entrada_antes" || production[0] === "Pila_antes"){
+                    resultado += production[0].fontcolor("#a866ff")+": ".fontcolor("#a866ff") + production[1]+"<br/>";
+                }
+                else if (production[0] === "Match"){
+                    resultado += production[0].fontcolor("orange")+": ".fontcolor("orange") + production[1]+"<br/>";
+                }
+                else{
+                    resultado += production[0].fontcolor("navy")+": ".fontcolor("navy") + production[1]+"<br/>";
+                }
             }
             else{
                 if(production[0] === "BR"){
