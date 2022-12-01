@@ -57,6 +57,8 @@ export const tabla = {
     },
     "Coleccion":{
         "ID":["ID"],
+        "[":["List"],
+
     },
     "A":{
         "ID":["ID","ASIGNACIÓN","E","TERMINADOR","S0"]
@@ -68,6 +70,7 @@ export const tabla = {
         "BOOLEANO":["T", "E'"],
         "ENTERO":["T", "E'"],
         "DECIMAL":["T", "E'"],
+        "[":["T", "E'"],
     },
     "E'":{
         "TERMINADOR":[""],
@@ -99,6 +102,7 @@ export const tabla = {
         "BOOLEANO":[""],
         "ENTERO":[""],
         "DECIMAL":[""],
+        "[":[""],
     },
     "T":{
         "PARÉNTESIS_ABRIR":["F"],
@@ -107,6 +111,7 @@ export const tabla = {
         "BOOLEANO":["F"],
         "ENTERO":["F"],
         "DECIMAL":["F"],
+        "[":["List"],
     },
     "F":{
         "PARÉNTESIS_ABRIR":["PARÉNTESIS_ABRIR","E","PARÉNTESIS_CERRAR"],
@@ -115,6 +120,7 @@ export const tabla = {
         "BOOLEANO":["BOOLEANO"],
         "ENTERO":["ENTERO"],
         "DECIMAL":["DECIMAL"],
+        "[":["List"],
     },
     "Tipo":{
         "ID":["ID"],
@@ -122,10 +128,27 @@ export const tabla = {
         "BOOLEANO":["BOOLEANO"],
         "ENTERO":["ENTERO"],
         "DECIMAL":["DECIMAL"],
+        "[":["List"],
+    },
+    "List":{
+        "[":["[","L","]"],
+    },
+    "L":{
+        "(":["P"],
+        ")":[""],
+        "ID":["P"],
+        "STRING":["P"],
+        "BOOLEANO":["P"],
+        "ENTERO":["P"],
+        "DECIMAL":["P"],
+        "[":["P"],
+        "]":[""],
+
     },
     "LenOpt":{
         "ID":["ID"],
         "STRING":["STRING"],
+        "[":["List"],
     },
     "P":{
         "PARÉNTESIS_ABRIR":["Z","Y"],
@@ -134,10 +157,12 @@ export const tabla = {
         "BOOLEANO":["Z","Y"],
         "ENTERO":["Z","Y"],
         "DECIMAL":["Z","Y"],
+        "[":["Z","Y"],
     },
     "Y":{
         "PARÉNTESIS_CERRAR":[""],
-        "COMA":["COMA","Z","Y"]
+        "COMA":["COMA","Z","Y"],
+        "]":[""],
     },
     "Z":{
         "PARÉNTESIS_ABRIR":["F"],
@@ -146,5 +171,6 @@ export const tabla = {
         "BOOLEANO":["F"],
         "ENTERO":["F"],
         "DECIMAL":["F"],
+        "[":["F"],
     }
 }
