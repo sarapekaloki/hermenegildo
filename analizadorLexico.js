@@ -142,5 +142,5 @@ function singleOperator(char){
             token: token
         }
     }
-    return res               
+    return res
 }
