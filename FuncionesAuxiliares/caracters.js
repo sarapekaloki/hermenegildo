@@ -17,6 +17,10 @@ export function caracteres(estado, cadena, apuntadorInicial, apuntadorBusqueda){
                 apuntadorBusqueda = apuntadorBusqueda+1;
             } else{
                 token = {error: "ERROR LÉXICO: EL TIPO DE DATO \'CARACTER\' NO PUEDE TENER MÁS DE 1 CARACTER O NO TIENE \' DE CIERRE" }
+
+                while(cadena.charAt(apuntadorBusqueda)!= " "){
+                    apuntadorBusqueda = apuntadorBusqueda+1
+                }
                 res = {
                     estado: 0,
                     apuntadorInicial: apuntadorInicial,
