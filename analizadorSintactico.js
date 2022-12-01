@@ -193,7 +193,8 @@ export function validarCadena(tabla,pila,entrada){
     while (true){
         try{
             producciones.push(["Entrada_antes",entrada])
-            producciones.push(["Pila_antes",pila])
+            producciones.push(["Pila_antes",pila.slice()])
+            console.log("Pila -->", pila)
             let valorPila = pila.pop()
             if (valorPila === '' || valorPila === ""){
                 valorPila = pila.pop()
@@ -211,11 +212,11 @@ export function validarCadena(tabla,pila,entrada){
             else{
                 const resultado = tabla[valorPila][valorEntrada]
                 // console.log("tabla[",valorPila,"][",valorEntrada,"]")
-                producciones.push(["Sustitución",tabla[valorPila][valorEntrada]])
+                producciones.push(["Sustitución",valorPila,tabla[valorPila][valorEntrada]])
                 resultado.slice().reverse().forEach(valor => pila.push(valor) );
             }
             producciones.push(["Entrada_después", entrada])
-            producciones.push(["Pila_después", pila])
+            producciones.push(["Pila_después", pila.slice()])
             producciones.push(["BR"])
         }
         catch (e){
