@@ -1,7 +1,4 @@
 export const tabla = {
-    "S":{
-        "Id":["A","$"],
-    },
     "S0":{
         "$":[""],
         "FUNCION_TYPE":["FUNCION_TYPE","PARÉNTESIS_ABRIR","Tipo","PARÉNTESIS_CERRAR","TERMINADOR","S0"],
@@ -57,8 +54,8 @@ export const tabla = {
     },
     "Coleccion":{
         "ID":["ID"],
-        "[":["List"],
-        "(":["Tuple"],
+        "CORCHETE_ABRIR":["List"],
+        "PARÉNTESIS_ABRIR":["Tuple"],
 
     },
     "A":{
@@ -72,8 +69,8 @@ export const tabla = {
         "ENTERO":["T", "E'"],
         "DECIMAL":["T", "E'"],
         "CARACTER":["T", "E'"],
-        "[":["T", "E'"],
-        "(":["T","E'"],
+        "CORCHETE_ABRIR":["T", "E'"],
+
     },
     "E'":{
         "TERMINADOR":[""],
@@ -96,7 +93,6 @@ export const tabla = {
         "OPERADOR_AND":["OPERADOR_AND", "T" , "E'"],
         "OPERADOR_OR":["OPERADOR_OR", "T" , "E'"],
         "OPERADOR_XOR":["OPERADOR_XOR", "T" , "E'"],
-        ")":[""],
     },
     "IN":{
         "PARÉNTESIS_ABRIR":[""],
@@ -107,8 +103,7 @@ export const tabla = {
         "ENTERO":[""],
         "DECIMAL":[""],
         "CARACTER":[""],
-        "[":[""],
-        "(":[""],
+        "CORCHETE_ABRIR":[""],
     },
     "T":{
         "PARÉNTESIS_ABRIR":["F"],
@@ -118,8 +113,7 @@ export const tabla = {
         "ENTERO":["F"],
         "DECIMAL":["F"],
         "CARACTER":["F"],
-        "[":["List"],
-        "(":["F"],
+        "CORCHETE_ABRIR":["List"],
     },
     "F":{
         "PARÉNTESIS_ABRIR":["PARÉNTESIS_ABRIR","E","PARÉNTESIS_CERRAR"],
@@ -129,8 +123,8 @@ export const tabla = {
         "ENTERO":["ENTERO"],
         "DECIMAL":["DECIMAL"],
         "CARACTER":["CARACTER"],
-        "[":["List"],
-        "(":["(","E",")"],
+        "CORCHETE_ABRIR":["List"],
+
     },
     "Tipo":{
         "ID":["ID"],
@@ -139,32 +133,32 @@ export const tabla = {
         "ENTERO":["ENTERO"],
         "DECIMAL":["DECIMAL"],
         "CARACTER":["CARACTER"],
-        "[":["List"],
-        "(":["Tuple"],
+        "CORCHETE_ABRIR":["List"],
+        "PARÉNTESIS_ABRIR":["Tuple"],
     },
     "List":{
-        "[":["[","L","]"],
+        "CORCHETE_ABRIR":["CORCHETE_ABRIR","L","CORCHETE_CERRAR"],
     },
     "L":{
-        "(":["P"],
-        ")":[""],
+        "PARÉNTESIS_ABRIR":["P"],
+        "PARÉNTESIS_CERRAR":[""],
         "ID":["P"],
         "STRING":["P"],
         "BOOLEANO":["P"],
         "ENTERO":["P"],
         "DECIMAL":["P"],
         "CARACTER":["P"],
-        "[":["P"],
-        "]":[""],
+        "CORCHETE_ABRIR":["P"],
+        "CORCHETE_CERRAR":[""],
     },
     "Tuple":{
-        "(":["(","L",")"],
+        "PARÉNTESIS_ABRIR":["PARÉNTESIS_ABRIR","L","PARÉNTESIS_CERRAR"],
     },
     "LenOpt":{
         "ID":["ID"],
         "STRING":["STRING"],
-        "[":["List"],
-        "(":["Tuple"],
+        "CORCHETE_ABRIR":["List"],
+        "PARÉNTESIS_ABRIR":["Tuple"],
     },
     "P":{
         "PARÉNTESIS_ABRIR":["Z","Y"],
@@ -174,14 +168,12 @@ export const tabla = {
         "ENTERO":["Z","Y"],
         "DECIMAL":["Z","Y"],
         "CARACTER":["Z","Y"],
-        "[":["Z","Y"],
-        "(":["Z","Y"],
+        "CORCHETE_ABRIR":["Z","Y"],
     },
     "Y":{
         "PARÉNTESIS_CERRAR":[""],
         "COMA":["COMA","Z","Y"],
-        "]":[""],
-        ")":[""],
+        "CORCHETE_CERRAR":[""],
     },
     "Z":{
         "PARÉNTESIS_ABRIR":["F"],
@@ -191,20 +183,17 @@ export const tabla = {
         "ENTERO":["F"],
         "DECIMAL":["F"],
         "CARACTER":["F"],
-        "[":["F"],
-        "(":["F"],
+        "CORCHETE_ABRIR":["F"],
     }
 }
 
-export let pila = ["$", "S0"];
 
 export function validarCadena(tabla,pila,entrada){
     let producciones = [];
     while (true){
         try{
-            let cosita = [];
-            cosita.push("Entrada --> ", entrada)
-            cosita.push("Pila --> ", pila)
+            producciones.push(["Entrada_antes",entrada])
+            producciones.push(["Pila_antes",pila])
             let valorPila = pila.pop()
             if (valorPila === '' || valorPila === ""){
                 valorPila = pila.pop()
@@ -213,26 +202,24 @@ export function validarCadena(tabla,pila,entrada){
 
             if(valorEntrada===valorPila){
                 if(valorEntrada==='$'){
-                    producciones.push(`--- CADENA VALIDA ---`)
+                    producciones.push([1])
                     return producciones
                 }
-                cosita.push(`Match Pila -> ${valorPila} Entrada -> ${valorEntrada}`)
+                producciones.push(["Match",valorPila])
                 entrada=entrada.slice(1);
             }
             else{
                 const resultado = tabla[valorPila][valorEntrada]
                 // console.log("tabla[",valorPila,"][",valorEntrada,"]")
-                cosita.push("Sustitución = ",tabla[valorPila][valorEntrada])
+                producciones.push(["Sustitución",tabla[valorPila][valorEntrada]])
                 resultado.slice().reverse().forEach(valor => pila.push(valor) );
             }
-            cosita.push("Valorentrada --> ",valorEntrada)
-            cosita.push("ValorPila --> ",valorPila)
-            cosita.push("Entrada --> ", entrada)
-            cosita.push("Pila --> ", pila)
-            producciones.push(cosita)
+            producciones.push(["Entrada_después", entrada])
+            producciones.push(["Pila_después", pila])
+            producciones.push(["BR"])
         }
         catch (e){
-            producciones.push(`--- CADENA NO VALIDA ---`)
+            producciones.push([0])
             return producciones
         }
     }

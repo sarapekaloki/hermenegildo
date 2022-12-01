@@ -1,7 +1,4 @@
 export const tabla = {
-    "S":{
-        "Id":["A","$"],
-    },
     "S0":{
         "$":[""],
         "FUNCION_TYPE":["FUNCION_TYPE","PARÉNTESIS_ABRIR","Tipo","PARÉNTESIS_CERRAR","TERMINADOR","S0"],
@@ -57,8 +54,8 @@ export const tabla = {
     },
     "Coleccion":{
         "ID":["ID"],
-        "[":["List"],
-        "(":["Tuple"],
+        "CORCHETE_ABRIR":["List"],
+        "PARÉNTESIS_ABRIR":["Tuple"],
 
     },
     "A":{
@@ -72,8 +69,8 @@ export const tabla = {
         "ENTERO":["T", "E'"],
         "DECIMAL":["T", "E'"],
         "CARACTER":["T", "E'"],
-        "[":["T", "E'"],
-        "(":["T","E'"],
+        "CORCHETE_ABRIR":["T", "E'"],
+
     },
     "E'":{
         "TERMINADOR":[""],
@@ -96,7 +93,6 @@ export const tabla = {
         "OPERADOR_AND":["OPERADOR_AND", "T" , "E'"],
         "OPERADOR_OR":["OPERADOR_OR", "T" , "E'"],
         "OPERADOR_XOR":["OPERADOR_XOR", "T" , "E'"],
-        ")":[""],
     },
     "IN":{
         "PARÉNTESIS_ABRIR":[""],
@@ -107,8 +103,7 @@ export const tabla = {
         "ENTERO":[""],
         "DECIMAL":[""],
         "CARACTER":[""],
-        "[":[""],
-        "(":[""],
+        "CORCHETE_ABRIR":[""],
     },
     "T":{
         "PARÉNTESIS_ABRIR":["F"],
@@ -118,8 +113,7 @@ export const tabla = {
         "ENTERO":["F"],
         "DECIMAL":["F"],
         "CARACTER":["F"],
-        "[":["List"],
-        "(":["F"],
+        "CORCHETE_ABRIR":["List"],
     },
     "F":{
         "PARÉNTESIS_ABRIR":["PARÉNTESIS_ABRIR","E","PARÉNTESIS_CERRAR"],
@@ -129,8 +123,8 @@ export const tabla = {
         "ENTERO":["ENTERO"],
         "DECIMAL":["DECIMAL"],
         "CARACTER":["CARACTER"],
-        "[":["List"],
-        "(":["(","E",")"],
+        "CORCHETE_ABRIR":["List"],
+
     },
     "Tipo":{
         "ID":["ID"],
@@ -139,32 +133,32 @@ export const tabla = {
         "ENTERO":["ENTERO"],
         "DECIMAL":["DECIMAL"],
         "CARACTER":["CARACTER"],
-        "[":["List"],
-        "(":["Tuple"],
+        "CORCHETE_ABRIR":["List"],
+        "PARÉNTESIS_ABRIR":["Tuple"],
     },
     "List":{
-        "[":["[","L","]"],
+        "CORCHETE_ABRIR":["CORCHETE_ABRIR","L","CORCHETE_CERRAR"],
     },
     "L":{
-        "(":["P"],
-        ")":[""],
+        "PARÉNTESIS_ABRIR":["P"],
+        "PARÉNTESIS_CERRAR":[""],
         "ID":["P"],
         "STRING":["P"],
         "BOOLEANO":["P"],
         "ENTERO":["P"],
         "DECIMAL":["P"],
         "CARACTER":["P"],
-        "[":["P"],
-        "]":[""],
+        "CORCHETE_ABRIR":["P"],
+        "CORCHETE_CERRAR":[""],
     },
     "Tuple":{
-        "(":["(","L",")"],
+        "PARÉNTESIS_ABRIR":["PARÉNTESIS_ABRIR","L","PARÉNTESIS_CERRAR"],
     },
     "LenOpt":{
         "ID":["ID"],
         "STRING":["STRING"],
-        "[":["List"],
-        "(":["Tuple"],
+        "CORCHETE_ABRIR":["List"],
+        "PARÉNTESIS_ABRIR":["Tuple"],
     },
     "P":{
         "PARÉNTESIS_ABRIR":["Z","Y"],
@@ -174,14 +168,12 @@ export const tabla = {
         "ENTERO":["Z","Y"],
         "DECIMAL":["Z","Y"],
         "CARACTER":["Z","Y"],
-        "[":["Z","Y"],
-        "(":["Z","Y"],
+        "CORCHETE_ABRIR":["Z","Y"],
     },
     "Y":{
         "PARÉNTESIS_CERRAR":[""],
         "COMA":["COMA","Z","Y"],
-        "]":[""],
-        ")":[""],
+        "CORCHETE_CERRAR":[""],
     },
     "Z":{
         "PARÉNTESIS_ABRIR":["F"],
@@ -191,176 +183,7 @@ export const tabla = {
         "ENTERO":["F"],
         "DECIMAL":["F"],
         "CARACTER":["F"],
-        "[":["F"],
-        "(":["F"],
+        "CORCHETE_ABRIR":["F"],
     }
 }
 
-
-export const tablaOG = {
-    "S":{
-        "Id":["A","$"],
-    },
-    "S0":{
-        "$":[""],
-        "type":["type","(","Tipo",")",";","S0"],
-        "print":["print","(","P",")",";","S0"],
-        "len":["len","(","LenOpt",")",";","S0"],
-        "if":["If"],
-        "}":[""],
-        "switch":["Switch"],
-        "for":["For"],
-        "id":["A"],
-        "while":["While"],
-        "case":[""],
-        "break":[""],
-        "":[""]
-    },
-    "If":{
-        "if":["if","(","E",")","{","S0","}","Else","S0"]
-    },
-    "Switch":{
-        "switch":["switch","(","E",")","{","Case","}","S0"]
-    },
-    "For":{
-        "for":["for","(","id","in","Coleccion",")","{","S0","}","S0"]
-    },
-    "While":{
-        "while":["while","(","E",")","{","S0","}","S0"]
-    },
-    "Case":{
-        "case":["case","E",":","S0","B"]
-    },
-    "B":{
-        "}":[""],
-        "case":[""],
-        "break":["break",";"]
-    },
-    "Case'":{
-        "case":["Case","Case'"]
-    },
-    "Else":{
-        "$":[""],
-        "type":[""],
-        "print":[""],
-        "len":[""],
-        "if":[""],
-        "}":[""],
-        "switch":[""],
-        "for":[""],
-        "id":[""],
-        "while":[""],
-        "case":[""],
-        "break":[""],
-        "else":["else","{","S0","}"]
-    },
-    "Coleccion":{
-        "id":["id"],
-        "list":["list"]
-    },
-    "A":{
-        "id":["id","=","E",";","S0"]
-    },
-    "E":{
-        "id":["T", "E'"],
-        "(":["T", "E'"],
-        "string":["T", "E'"],
-        "bool":["T", "E'"],
-        "int":["T", "E'"],
-        "float":["T", "E'"],
-        "list":["T", "E'"],
-        "tuple":["T", "E'"]
-    },
-    "E'":{
-        ";":[""],
-        ")":[""],
-        ":":[""],
-        "+":["+", "T" , "E'"],
-        "-":["-", "T" , "E'"],
-        "/":["/", "T" , "E'"],
-        "*":["*", "T" , "E'"],
-        "**":["**", "T" , "E'"],
-        "%":["%", "T" , "E'"],
-        "<":["<", "T" , "E'"],
-        ">":[">", "T" , "E'"],
-        "<=":["<=", "T" , "E'"],
-        ">=":[">=", "T" , "E'"],
-        "==":["==", "T" , "E'"],
-        "!=":["!=", "T" , "E'"],
-        "in":["in", "T" , "E'"],
-        "not":["not","IN", "T" , "E'"],
-        "and":["and", "T" , "E'"],
-        "or":["xor", "T" , "E'"],
-        "xor":["xor", "T" , "E'"],
-    },
-    "IN":{
-        "(":[""],
-        "id":[""],
-        "in":["in"],
-        "string":[""],
-        "bool":[""],
-        "int":[""],
-        "float":[""],
-        "list":[""],
-        "tuple":[""]
-    },
-    "T":{
-        "(":["F"],
-        "id":["F"],
-        "string":["F"],
-        "bool":["F"],
-        "int":["F"],
-        "float":["F"],
-        "list":["F"],
-        "tuple":["F"]
-    },
-    "F":{
-        "(":["(","E",")"],
-        "id":["id"],
-        "string":["string"],
-        "bool":["bool"],
-        "int":["int"],
-        "float":["float"],
-        "list":["list"],
-        "tuple":["tuple"]
-    },
-    "Tipo":{
-        "id":["id"],
-        "string":["string"],
-        "bool":["bool"],
-        "int":["int"],
-        "float":["float"],
-        "list":["list"],
-        "tuple":["tuple"]
-    },
-    "LenOpt":{
-        "id":["id"],
-        "string":["string"],
-        "list":["list"],
-        "tuple":["tuple"]
-    },
-    "P":{
-        "(":["Z","Y"],
-        "id":["Z","Y"],
-        "string":["Z","Y"],
-        "bool":["Z","Y"],
-        "int":["Z","Y"],
-        "float":["Z","Y"],
-        "list":["Z","Y"],
-        "tuple":["Z","Y"]
-    },
-    "Y":{
-        ")":[""],
-        ",":[",","Z","Y"]
-    },
-    "Z":{
-        "(":["F"],
-        "id":["F"],
-        "string":["F"],
-        "bool":["F"],
-        "int":["F"],
-        "float":["F"],
-        "list":["F"],
-        "tuple":["F"]
-    }
-}
