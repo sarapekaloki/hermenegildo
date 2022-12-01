@@ -27,7 +27,7 @@ function run(){
         }
     })
     entrada.push("$")
-    resultado += "<br/>" + 'ANÁLISIS SINTÁCTICO:'.fontcolor("green").fontsize(4) + "<br>" + "<hr>";
+    resultado += "<br/>" + 'ANÁLISIS SINTÁCTICO:'.fontcolor("green").fontsize(4) + "<br>" + "<hr>"+ "<br>";
 
 
     console.log("entradita",entrada);
@@ -51,7 +51,7 @@ function run(){
             }
             else{
                 if(production[0] === "BR"){
-                    resultado += "<hr>";
+                    resultado += "<br>"+"<hr>"+"<br>";
                 }
                 else if(production[0] === 1){
                     resultado += "SINTAXIS CORRECTA".fontcolor("green");
