@@ -1,8 +1,8 @@
 
 const palabrasReservadas = {
     None: "NULO",
-    True: "BOOLEANO_1",
-    False: "BOOLEANO_0",
+    True: "BOOLEANO",
+    False: "BOOLEANO",
     and: "OPERADOR_AND",
     or: "OPERADOR_OR",
     not: "OPERADOR_NOT",

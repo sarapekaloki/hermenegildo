@@ -165,13 +165,16 @@ export const tabla = {
         "tuple":["F"]
     }
 }
+
 export let pila = ["$", "S0"];
 
 export function validarCadena(tabla,pila,entrada){
+    let producciones = [];
     while (true){
         try{
-            console.log("Entrada --> ", entrada)
-            console.log("Pila --> ", pila)
+            let cosita = [];
+            cosita.push("Entrada --> ", entrada)
+            cosita.push("Pila --> ", pila)
             let valorPila = pila.pop()
             if (valorPila === '' || valorPila === ""){
                 valorPila = pila.pop()
@@ -180,30 +183,32 @@ export function validarCadena(tabla,pila,entrada){
 
             if(valorEntrada===valorPila){
                 if(valorEntrada==='$'){
-                    console.log(`--- CADENA VALIDA ---`)
-                    break
+                    producciones.push(`--- CADENA VALIDA ---`)
+                    return producciones
                 }
-                console.log(`Match Pila -> ${valorPila} Entrada -> ${valorEntrada}`)
+                cosita.push(`Match Pila -> ${valorPila} Entrada -> ${valorEntrada}`)
                 entrada=entrada.slice(1);
             }
             else{
                 const resultado = tabla[valorPila][valorEntrada]
-                console.log("tabla[",valorPila,"][",valorEntrada,"]")
-                console.log("res = ",tabla[valorPila][valorEntrada])
+                // console.log("tabla[",valorPila,"][",valorEntrada,"]")
+                cosita.push("Sustitución = ",tabla[valorPila][valorEntrada])
                 resultado.slice().reverse().forEach(valor => pila.push(valor) );
             }
-            console.log("Valorentrada --> ",valorEntrada)
-            console.log("ValorPila --> ",valorPila)
-            console.log("Entrada --> ", entrada)
-            console.log("Pila --> ", pila)
-            console.log("\n")
+            cosita.push("Valorentrada --> ",valorEntrada)
+            cosita.push("ValorPila --> ",valorPila)
+            cosita.push("Entrada --> ", entrada)
+            cosita.push("Pila --> ", pila)
+            producciones.push(cosita)
         }
         catch (e){
-            console.log(`--- CADENA NO VALIDA ---`)
-            break
+            producciones.push(`--- CADENA NO VALIDA ---`)
+            return producciones
         }
     }
 }
+
+
 export function validarCadena2(tabla,pila,entrada){
     while (true){
         try{

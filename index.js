@@ -1,5 +1,5 @@
 import {analizadorLexico} from "./analizadorLexico.js";
-import {tabla, validarCadena} from "./analizadorSintactico.js";
+import {tabla, pila, validarCadena,validarCadena2} from "./analizadorSintactico.js";
 
 var code = document.getElementById('code');
 var result = document.getElementById('result');
@@ -25,12 +25,12 @@ function run(){
             resultado += "Type: ".fontcolor("#ba22e0")+token.type + " Value: ".fontcolor("#ff00a2")+ token.value+"<br />";
             entrada.push(token.type)
         }
-        
     })
+    entrada.push("$")
     result.innerHTML = resultado
 
     console.log("entradita",entrada);
-    validarCadena()
+    console.log(validarCadena(tabla,pila,entrada))
 
 }
 
