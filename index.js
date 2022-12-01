@@ -14,7 +14,7 @@ function run(){
     console.log(codigo)
     let tokens = analizadorLexico(0,codigo, 0, 0, [])
     let entrada = [];
-    var resultado = 'TOKENS:'.fontcolor("green").fontsize(4)+"<br />"+"<br>"+"<hr>".fontcolor("grey")+"<br />";
+    var resultado = 'TOKENS:'.fontcolor("green").fontsize(4)+"<br />"+"<hr>".fontcolor("grey")+"<br />";
 
     console.log(tokens)
     tokens.forEach(token => { 
