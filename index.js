@@ -54,10 +54,10 @@ function run(){
                     resultado += "<br>"+"<hr>"+"<br>";
                 }
                 else if(production[0] === 1){
-                    resultado += "SINTAXIS CORRECTA".fontcolor("green");
+                    resultado += "<br>"+"<hr>"+"<br>"+"SINTAXIS CORRECTA".fontcolor("green").fontsize(4);
                 }
                 else if(production[0] === 0){
-                    resultado += "ERROR DE SINTAXIS".fontcolor("red");
+                    resultado += "<br>"+"<hr>"+"<br>"+"ERROR DE SINTAXIS".fontcolor("red").fontsize(4);
                 }
             }
         })
