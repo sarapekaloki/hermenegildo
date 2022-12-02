@@ -39,6 +39,7 @@ export const tabla = {
     },
     "Else":{
         "$":[""],
+        "TERMINADOR":[""],
         "FUNCION_TYPE":[""],
         "FUNCION_PRINT":[""],
         "FUNCION_LEN":[""],
