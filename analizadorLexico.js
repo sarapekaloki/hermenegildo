@@ -72,18 +72,6 @@ export function analizadorLexico(estado, cadena, apuntadorInicial, apuntadorBusq
     return tokens    
 }
 
-
-// let codigo = 
-// `
-// lista = ["hola", True]
-// `
-
-
-// codigo = codigo.replaceAll("\t","")
-// console.log("TOKENS")
-// analizadorLexico(0, codigo, 0,0)
-
-
 function reRun(res, cadena){
     if(Object.keys(res).length > 3) {
         tokensOG.push(res.token);
